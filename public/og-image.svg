@@ -1,0 +1,36 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#000000"/>
+  
+  <!-- Border frame -->
+  <rect x="40" y="40" width="1120" height="550" rx="16" fill="none" stroke="#00ff88" stroke-width="4"/>
+  
+  <!-- Terminal prompt -->
+  <text x="60" y="140" font-family="monospace" font-size="64" font-weight="bold" fill="#00ff88">&gt; Entrepreneur OS</text>
+  
+  <!-- Name -->
+  <text x="60" y="220" font-family="Inter, sans-serif" font-size="48" font-weight="600" fill="#ffffff">Kartik Rawat</text>
+  
+  <!-- Title -->
+  <text x="60" y="280" font-family="Inter, sans-serif" font-size="32" font-weight="400" fill="#b0b0b0">Product Builder &amp; Entrepreneur</text>
+  
+  <!-- Description lines -->
+  <text x="60" y="340" font-family="Inter, sans-serif" font-size="24" font-weight="400" fill="#757575">Building products from 0→1 | Shark Tank Featured</text>
+  <text x="60" y="380" font-family="Inter, sans-serif" font-size="24" font-weight="400" fill="#757575">Currently EIR at CashKaro</text>
+  
+  <!-- Contact info -->
+  <text x="60" y="440" font-family="Inter, sans-serif" font-size="20" font-weight="400" fill="#757575">Let's talk about products, AI, DHH &amp; gym life!</text>
+  
+  <!-- Website URL -->
+  <text x="1000" y="580" font-family="monospace" font-size="18" fill="#00ff88">kartikrawat.com</text>
+  
+  <!-- Decorative elements -->
+  <circle cx="1100" cy="100" r="3" fill="#00ff88" opacity="0.6"/>
+  <circle cx="1130" cy="120" r="2" fill="#00ff88" opacity="0.4"/>
+  <circle cx="1070" cy="140" r="2" fill="#00ff88" opacity="0.5"/>
+  
+  <!-- Terminal cursor -->
+  <rect x="520" y="110" width="4" height="30" fill="#00ff88" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.5s" repeatCount="indefinite"/>
+  </rect>
+</svg>
