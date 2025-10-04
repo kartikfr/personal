@@ -1,0 +1,22 @@
+{
+  "name": "Entrepreneur OS - Kartik Rawat",
+  "short_name": "Entrepreneur OS",
+  "description": "Welcome to my Entrepreneur OS! Product builder, startup enthusiast, and Shark Tank featured founder.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
+}

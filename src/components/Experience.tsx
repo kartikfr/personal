@@ -86,13 +86,13 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-20 px-4">
+    <section id="experience" className="py-16 sm:py-20 px-4 sm:px-6">
       <div className="container mx-auto max-w-6xl">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="font-mono text-4xl md:text-5xl font-bold text-primary mb-4"
+          className="font-mono text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-3 sm:mb-4"
         >
           <span className="text-terminal-green">&gt;</span> Experience.timeline
         </motion.h2>
@@ -101,14 +101,14 @@ const Experience = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-xl text-foreground/80 mb-12"
+          className="text-base sm:text-lg lg:text-xl text-foreground/80 mb-8 sm:mb-12"
         >
-          From idea to execution, here's my journey building 0→1 products.
+          Here's my ride so far - from wild ideas to actually shipping products that people use! 🚀
         </motion.p>
 
         <Window title="Experience.timeline — Career Path">
           <div className="relative">
-            <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-border md:left-8" />
+            <div className="absolute left-3 sm:left-4 md:left-8 top-0 bottom-0 w-0.5 bg-border" />
             
             {jobs.map((job, index) => (
               <motion.div
@@ -117,43 +117,63 @@ const Experience = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
-                className="relative pl-12 pb-12 md:pl-20"
+                className="relative pl-8 sm:pl-12 md:pl-20 pb-8 sm:pb-12"
               >
                 <div
-                  className="absolute left-2.5 w-3 h-3 rounded-full border-2 border-background md:left-6.5"
+                  className="absolute left-1.5 sm:left-2.5 md:left-6.5 w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full border-2 border-background"
                   style={{ backgroundColor: job.color }}
                 />
                 
                 <div
-                  className="bg-card border rounded-lg p-6 hover:border-primary/50 transition-all cursor-pointer"
+                  className="bg-card border rounded-lg p-4 sm:p-6 hover:border-primary/50 transition-all cursor-pointer"
                   onClick={() => setExpandedId(expandedId === job.id ? null : job.id)}
                   style={{ borderColor: expandedId === job.id ? job.color : undefined }}
                 >
                   <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <h3 className="text-2xl font-bold" style={{ color: job.color }}>
-                        {job.company}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold" style={{ color: job.color }}>
+                        {job.company === 'CashKaro' ? (
+                          <a 
+                            href="https://cashkaro.com/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="hover:underline transition-all"
+                          >
+                            {job.company}
+                          </a>
+                        ) : job.company === 'FitFeast' ? (
+                          <a 
+                            href="https://fitfeast.in/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="hover:underline transition-all"
+                          >
+                            {job.company}
+                          </a>
+                        ) : (
+                          job.company
+                        )}
                       </h3>
                       {job.badge && (
-                        <span className="inline-block mt-2 px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
+                        <span className="inline-block mt-1 sm:mt-2 px-2 sm:px-3 py-1 bg-primary/10 text-primary text-xs sm:text-sm rounded-full">
                           {job.badge}
                         </span>
                       )}
                     </div>
                     <ChevronDown
-                      className={`w-5 h-5 transition-transform ${
+                      className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform flex-shrink-0 ml-2 ${
                         expandedId === job.id ? 'rotate-180' : ''
                       }`}
                     />
                   </div>
                   
-                  <p className="text-lg font-semibold text-foreground mb-1">{job.role}</p>
-                  <p className="text-sm text-muted-foreground mb-2">
+                  <p className="text-base sm:text-lg font-semibold text-foreground mb-1">{job.role}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-2">
                     {job.period}
                     {job.isCurrent && <span className="ml-2 text-terminal-green">● Active</span>}
                   </p>
                   {job.description && (
-                    <p className="text-sm text-foreground/70 mb-4">{job.description}</p>
+                    <p className="text-xs sm:text-sm text-foreground/70 mb-4">{job.description}</p>
                   )}
 
                   <AnimatePresence>

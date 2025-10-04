@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import Window from './Window';
+import { useMobileDetection } from '@/hooks/use-mobile-detection';
 
 const Vibes = () => {
+  const isMobile = useMobileDetection();
   const tracks = [
     {
       id: 1,
@@ -18,13 +20,13 @@ const Vibes = () => {
   ];
 
   return (
-    <section id="vibes" className="py-20 px-4">
+    <section id="vibes" className="py-16 sm:py-20 px-4 sm:px-6">
       <div className="container mx-auto max-w-5xl">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="font-mono text-4xl md:text-5xl font-bold text-primary mb-4"
+          className="font-mono text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-3 sm:mb-4"
         >
           <span className="text-terminal-green">&gt;</span> Vibes.mp3
         </motion.h2>
@@ -33,73 +35,119 @@ const Vibes = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-xl text-foreground/80 mb-12"
+          className="text-base sm:text-lg lg:text-xl text-foreground/80 mb-8 sm:mb-12 max-w-4xl"
         >
-          The soundtrack that fuels building, shipping, and scaling.
-          <br />
-          Here are my top 3 hype songs on repeat:
+          Music is basically my productivity hack! When I'm in the zone building stuff, 
+          these tracks keep me locked in and motivated. 
+          <br className="hidden sm:block" />
+          <span className="block sm:inline mt-2 text-primary font-medium">
+            Here's what's been keeping me pumped lately:
+          </span>
         </motion.p>
 
-        <Window title="Vibes.mp3 — My Current Playlist">
-          <div className="space-y-6">
-            {tracks.map((track, index) => (
-              <motion.div
-                key={track.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.3, duration: 0.6 }}
-                whileHover={{ scale: 1.02 }}
-                className="bg-card/50 border border-border rounded-xl p-4 hover:border-primary/50 hover:shadow-lg transition-all overflow-hidden"
-              >
-                {[...Array(5)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute w-1 bg-primary/20 -z-10"
-                    style={{
-                      left: `${10 + i * 20}%`,
-                      height: '60px',
-                      bottom: '20px',
-                    }}
-                    animate={{
-                      scaleY: [0.5, 1, 0.5],
-                    }}
-                    transition={{
-                      duration: 0.5,
-                      repeat: Infinity,
-                      delay: i * 0.1,
-                      ease: 'easeInOut',
-                    }}
-                  />
-                ))}
-                
-                <iframe
-                  src={track.embedUrl}
-                  width="100%"
-                  height="352"
-                  frameBorder="0"
-                  allowFullScreen
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  title={`Spotify track ${track.id}`}
-                  className="rounded-lg"
-                />
-              </motion.div>
-            ))}
-          </div>
+        <Window title="Vibes.mp3 — My Productivity Playlist">
+          <div className="space-y-8">
+            {/* Desktop Layout - Side by Side */}
+            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {tracks.map((track, index) => (
+                <motion.div
+                  key={track.id}
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.2, duration: 0.6, type: "spring" }}
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  className="group relative"
+                >
+                  <div className="bg-card/30 border border-border rounded-2xl p-2 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 overflow-hidden">
+                    <div className="relative">
+                      <iframe
+                        src={track.embedUrl}
+                        width="100%"
+                        height="352"
+                        frameBorder="0"
+                        allowFullScreen
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy"
+                        title={`Productivity Track ${track.id}`}
+                        className="rounded-xl w-full no-scrollbar"
+                        style={{ 
+                          background: 'transparent',
+                          filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.1))',
+                          overflow: 'hidden',
+                          overflowX: 'hidden',
+                          overflowY: 'hidden'
+                        }}
+                      />
+                      
+                      {/* Hover Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none" />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 1.2 }}
-            className="mt-8 p-4 bg-primary/10 border border-primary/30 rounded-lg text-center"
-          >
-            <p className="text-foreground font-medium">
-              🎵 <span className="text-primary">Pro tip:</span> Play these while exploring the rest of the site.
-              Music makes everything better.
-            </p>
-          </motion.div>
+            {/* Mobile Layout - Stacked */}
+            <div className="md:hidden space-y-6">
+              {tracks.map((track, index) => (
+                <motion.div
+                  key={track.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.2, duration: 0.6 }}
+                  className="relative"
+                >
+                  <div className="bg-card/30 border border-border rounded-2xl p-3 hover:border-primary/50 transition-all duration-300">
+                    <iframe
+                      src={track.embedUrl}
+                      width="100%"
+                      height="400"
+                      frameBorder="0"
+                      allowFullScreen
+                      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                      loading="lazy"
+                      title={`Productivity Track ${track.id}`}
+                      className="rounded-xl w-full no-scrollbar"
+                      style={{ 
+                        background: 'transparent',
+                        minHeight: '400px',
+                        overflow: 'hidden',
+                        overflowX: 'hidden',
+                        overflowY: 'hidden'
+                      }}
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Enhanced Pro Tip */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+              className="mt-8 p-6 bg-gradient-to-r from-primary/10 via-secondary/5 to-accent/10 border border-primary/20 rounded-2xl text-center backdrop-blur-sm"
+            >
+              <div className="flex items-center justify-center gap-3 mb-3">
+                <motion.div
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                  className="text-2xl"
+                >
+                  🎵
+                </motion.div>
+                <span className="text-primary font-semibold text-lg">Pro Tip</span>
+              </div>
+              <p className="text-foreground/90 font-medium leading-relaxed">
+                These are my go-to tracks when I need to get stuff done! 
+                <br className="hidden sm:block" />
+                <span className="text-primary">Give them a listen</span> while you're here - maybe they'll get you pumped up too! 🎵
+              </p>
+            </motion.div>
+          </div>
         </Window>
       </div>
     </section>

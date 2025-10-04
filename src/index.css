@@ -132,4 +132,68 @@ All colors MUST be HSL.
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+  
+  /* Mobile-specific improvements */
+  @media (max-width: 640px) {
+    .window-shadow {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 0 0 1px hsl(var(--window-border));
+    }
+    
+    /* Improve touch targets */
+    button, a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Better text rendering on mobile */
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+  }
+  
+  /* Prevent horizontal scroll on mobile */
+  html, body {
+    overflow-x: hidden;
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+  }
+  
+  /* Hide scrollbars for iframes */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .no-scrollbar::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+  }
+  
+  /* Target iframe content specifically */
+  iframe.no-scrollbar {
+    overflow: hidden !important;
+  }
+  
+  /* Hide horizontal scrollbar in Spotify embeds */
+  iframe[src*="spotify"] {
+    overflow-x: hidden !important;
+  }
+  
+  /* Additional iframe scrollbar hiding */
+  iframe {
+    overflow: hidden !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+  
+  iframe::-webkit-scrollbar {
+    display: none !important;
+  }
 }

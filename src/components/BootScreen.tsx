@@ -5,7 +5,7 @@ const BootScreen = ({ onComplete }: { onComplete: () => void }) => {
   const [bootMessages, setBootMessages] = useState<string[]>([]);
   
   const messages = [
-    '> Initializing Kartik Rawat OS...',
+    '> Initializing Entrepreneur OS...',
     '> Loading core modules...',
     '> Mounting /experience',
     '> Mounting /skills',
